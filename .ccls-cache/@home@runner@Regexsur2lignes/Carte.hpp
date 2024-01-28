@@ -3,7 +3,9 @@
 #include <fstream>
 #include <string>
 #include <regex>
+
 #include "Parcelle.hpp"
+
 #include "za.hpp"
 #include "zau.hpp"
 #include "zn.hpp"
@@ -13,10 +15,13 @@ using namespace std;
 
 class Carte {
 private:
-  vector<Parcelle> parcelles;
-  float surfaceTotale;
+  vector<unique_ptr<Parcelle>> parcelles;  // Utilisation de pointeurs intelligents
+  //float surfaceTotale;
 
 public: 
   Carte(ifstream& inputFile);
-  void saveCarte(string savePath);
+  //void saveCarte(string savePath);
+
+  /* Getters */
+  vector<unique_ptr<Parcelle>> getParcelles(void) const;
 };
