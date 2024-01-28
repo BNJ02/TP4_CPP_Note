@@ -48,57 +48,45 @@ Carte::Carte(ifstream& inputFile) {
     cerr << "Impossible d'ouvrir le fichier." << endl;
   }
 
-  /*
   // calculate surfaceTotale by adding the surface of every Parcelle object
-  this->surfaceTotale=0;
-  vector<unique_ptr<Parcelle>>::iterator it = this->parcelles.begin();
-  for(it; it < this->parcelles.end(); it++){
-    this->surfaceTotale+=it->getSurface();
+  this->surfaceTotale = 0;
+  for (const auto& parcellePtr : this->parcelles) {
+      this->surfaceTotale += (*parcellePtr).getSurface();
   }
-  */
 }
 
-/*
+
 void Carte::saveCarte(string savePath) {
   ofstream saveFile(savePath);
-  string fileContent;
 
   // mettre les attributs des parcelles dans la string fileContent
-  vector<Parcelle>::iterator it = this->parcelles.begin();
-  for (it; it < this->parcelles.end(); it++) {
-    fileContent += it->getType();
-    fileContent += " ";
-    fileContent += to_string(it->getNumero());
-    fileContent += " ";
-    fileContent += it->getProprietaire();
+  for (vector<unique_ptr<Parcelle>>::iterator it = this->parcelles.begin(); it < this->parcelles.end(); it++) {
+    saveFile << (*it)->getType() << " " << (*it)->getNumero() << " " << (*it)->getProprietaire();
 
-    if (it->getType() == "ZU") {
-      fileContent += " ";
-      fileContent += to_string(it->getPConstructible());
-      fileContent += " ";
-      fileContent += dynamic_cast<ZU &>(*it).getSurfaceConstruite();
-    } else if (it->getType() == "ZAU") {
-      fileContent += " ";
-      fileContent += to_string(it->getPConstructible());
-    } else if (it->getType() == "ZA") {
-      fileContent += " ";
-      fileContent += (dynamic_cast<ZA &>(*it)).getCulture();
+    if ((*it)->getType() == "ZU") {
+      saveFile << " " << to_string((*it)->getPConstructible()) << " " << to_string((int)dynamic_cast<ZU &>(*(*it)).getSurfaceConstruite());
+    } else if ((*it)->getType() == "ZAU") {
+      saveFile << " " << to_string((*it)->getPConstructible());
+    } else if ((*it)->getType() == "ZA") {
+      saveFile << " " << (dynamic_cast<ZA &>(*(*it))).getCulture();
     }
+    saveFile << endl; // next line
 
-    fileContent += "\n\r";
-    saveFile << fileContent; // puts the content into the file
-    for(int i=0; i<4; i++){ // points
-      saveFile << it->getForme().getSommets()[i]; // put the output of Point2D's << operator straight into the file
-      fileContent += " "; // add space and put it into the file
-      saveFile << fileContent;
+    for(int i=0; i<(*it)->getForme().getSommets().size(); i++){ // points
+      saveFile << (*it)->getForme().getSommets()[i] << " "; // put the output of Point2D's << operator straight into the file
     }
+    saveFile << endl; // next parcelle
   }
   saveFile.close();
 }
-*/
+
 
 /* Getters */
 const vector<unique_ptr<Parcelle>>& Carte::getParcelles(void) const { return this->parcelles; }
 
+float Carte::getSurfaceTotale(void) const { return this->surfaceTotale; }
+
 /* Setters */
 void Carte::setParcelles(vector<unique_ptr<Parcelle>>&& nouvellesParcelles) { this->parcelles = move(nouvellesParcelles); }
+
+void Carte::setSurfaceTotale(float nouvelleSurfaceTotale) { this->surfaceTotale = nouvelleSurfaceTotale; }

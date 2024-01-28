@@ -94,7 +94,7 @@ void Point2D<T>::translate(const T& x, const T& y) {
 template <typename T>
 ostream& operator<<(ostream& os, Point2D<T> const &p)
 {
-    os << "[" << p.getX() << "; " << p.getY()<<"]";
+    os << "[" << p.getX() << ";" << p.getY()<<"]";
     return os;
 }
 

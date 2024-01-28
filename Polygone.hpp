@@ -13,7 +13,7 @@ template <typename T>
 class Polygone;
 
 template <typename T>
-std::ostream& operator<<(std::ostream &, Polygone<T> const&);
+ostream& operator<<(ostream &, Polygone<T> const&);
 
 template <typename T>
 class Polygone {
@@ -31,7 +31,7 @@ public:
   void addPoint(Point2D<T>);
   void translate(T x,T y);
 
-  friend std::ostream& operator<< <T>(std::ostream &, Polygone const&);
+  friend ostream& operator<< <T>(ostream &, Polygone const&);
 
 };
 
