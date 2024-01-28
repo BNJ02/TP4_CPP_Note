@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include <iostream>
 #include <fstream>
@@ -20,3 +21,4 @@ public:
   Carte(ifstream& inputFile);
   void saveCarte(string savePath);
 };
+*/

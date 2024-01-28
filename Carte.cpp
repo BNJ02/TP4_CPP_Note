@@ -1,3 +1,4 @@
+/*
 #include "Carte.hpp"
 
 using namespace std;
@@ -50,3 +51,4 @@ void Carte::saveCarte(string savePath) {
   }
   saveFile.close();
 }
+*/
