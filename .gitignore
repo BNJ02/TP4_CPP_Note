@@ -1,0 +1,62 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+*.nix
+
+# Generated files
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# Dependency directories
+bin/
+lib/
+build/
+
+# Ignore build artifacts and directories
+build/
+.vscode/
+
+# Ignore generated files by IDEs
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.sln.docstates
+
+# Ignore macOS folder attributes
+.DS_Store
+
+# Ignore Visual Studio Code configuration files
+.vscode/
+
+# Ignore other files and folders 
+.ccls-cache/
+.breakpoints
+.replit
